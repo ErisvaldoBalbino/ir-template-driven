@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ContatoComponent } from './components/contato-component/contato-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ContatoComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

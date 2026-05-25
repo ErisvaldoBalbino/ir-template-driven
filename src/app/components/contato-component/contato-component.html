@@ -1,0 +1,53 @@
+<form #contatoForm="ngForm" (ngSubmit)="onSubmit(contatoForm)">
+    <div>
+        <label for="nome">Nome</label>
+        <input #nomeRef="ngModel" [(ngModel)]="usuario.nome" type="text" id="nome" name="nome" required placeholder="Seu nome" minlength=3>
+        @if(nomeRef.invalid && nomeRef.touched) {
+            @if(nomeRef.errors?.['required']) {
+                <span>O nome é obrigatório.</span>
+            }
+
+            @if(nomeRef.errors?.['minlength']) {
+                <span>O nome deve ter pelo menos 3 caracteres.</span>
+            }
+        }
+    </div>
+    <div>
+        <label for="email">E-mail</label>
+        <input #emailRef="ngModel" [(ngModel)]="usuario.email" type="email" id="email" name="email" required placeholder="em@mail.com">
+        @if(emailRef.invalid && emailRef.touched) {
+            @if(emailRef.errors?.['required']) {
+                <span>O e-mail é obrigatório.</span>
+            }
+
+            <!--não funciona-->
+            @if(emailRef.errors?.['email']) {
+                <span>O e-mail deve ser válido.</span>
+            }
+        }
+    </div>
+    <div>
+        <label for="assunto">Assunto</label>
+        <input #assuntoRef="ngModel" [(ngModel)]="usuario.assunto" type="text" id="assunto" name="assunto" required placeholder="Feedback">
+        @if(assuntoRef.invalid && assuntoRef.touched) {
+            @if(assuntoRef.errors?.['required']) {
+                <span>O assunto é obrigatório.</span>
+            }
+        }
+    </div>
+    <div>
+        <label for="mensagem">Mensagem</label>
+        <input #mensagemRef="ngModel" [(ngModel)]="usuario.mensagem" type="text" id="mensagem" name="mensagem" required minlength=20>
+        @if(mensagemRef.invalid && mensagemRef.touched) {
+            @if(mensagemRef.errors?.['required']) {
+                <span>A mensagem é obrigatória.</span>
+            }
+
+            @if(mensagemRef.errors?.['minlength']) {
+                <span>A mensagem deve ter pelo menos 20 caracterss.</span>
+            }
+        }
+    </div>
+    <button type="submit" [disabled]="!contatoForm.form.valid">Submeter</button>
+</form>
+<p>{{contatoForm.valid}}</p>
